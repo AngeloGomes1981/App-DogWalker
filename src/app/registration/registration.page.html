@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #userForm="ngForm" (ngSubmit)="cadastrar(userForm)"> <!-- Passa a referência correta do formulário -->
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input [(ngModel)]="form.nome" name="nome" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefone</ion-label>
+      <ion-input [(ngModel)]="form.telefone" name="telefone" type="tel" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Endereço</ion-label>
+      <ion-input [(ngModel)]="form.endereco" name="endereco" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Interesse</ion-label>
+      <ion-select [(ngModel)]="form.interesse" name="interesse" required>
+        <ion-select-option value="passeador">Trabalhar como Passeador</ion-select-option>
+        <ion-select-option value="contratante">Contratar Passeador</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button type="submit">Cadastrar</ion-button>
+  </form>
+
+  <ion-button [routerLink]="['/presentation']">Voltar para Apresentação</ion-button>
+
+  <!-- Exibir dados cadastrados -->
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>
+        <h2>{{ user.nome }}</h2>
+        <p>Telefone: {{ user.telefone }}</p>
+        <p>Endereço: {{ user.endereco }}</p>
+        <p>Interesse: {{ user.interesse }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
